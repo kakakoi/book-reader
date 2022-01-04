@@ -13,25 +13,18 @@ ImageWidget:
     BoxLayout:
         orientation: 'horizontal'
         size: root.size
-
-        BoxLayout:
-            size_hint_x: 0.05
-            padding: 20,30,20,10
-            Button:
-                id: button_next
-                text: '<'
-                font_size: 30
-                on_press: root.buttonNext()
+        Image:
+            source: root.source_sub
+            allow_stretch: True
+            keep_ratio: True
+            size_hint_y: None
+            width: self.parent.width/self.image_ratio
+            height: self.parent.height
 
         Image:
-            source: root.source
-
-        BoxLayout:
-            size_hint_x: 0.05
-            padding: 20,30,20,10
-            Button:
-                id: button_prev
-                text: '>'
-                font_size: 30
-                on_press: root.buttonPrev()
-
+            source: root.source_main
+            allow_stretch: True
+            keep_ratio: True
+            size_hint_y: None
+            width: self.parent.width/self.image_ratio
+            height: self.parent.height
