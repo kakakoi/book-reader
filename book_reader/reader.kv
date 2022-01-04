@@ -1,0 +1,37 @@
+#:kivy 2.0
+
+ImageWidget:
+
+<ImageWidget>:
+    canvas.before:
+        Color:
+            rgba: 0.6, 0.6, 0.6, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'horizontal'
+        size: root.size
+
+        BoxLayout:
+            size_hint_x: 0.05
+            padding: 20,30,20,10
+            Button:
+                id: button_next
+                text: '<'
+                font_size: 30
+                on_press: root.buttonNext()
+
+        Image:
+            source: root.source
+
+        BoxLayout:
+            size_hint_x: 0.05
+            padding: 20,30,20,10
+            Button:
+                id: button_prev
+                text: '>'
+                font_size: 30
+                on_press: root.buttonPrev()
+
