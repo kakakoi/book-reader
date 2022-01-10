@@ -4,6 +4,8 @@ from kivy.uix.widget import Widget
 from kivy.properties import StringProperty, ListProperty, NumericProperty
 
 from kivy.core.window import Window
+from kivymd.app import MDApp
+from kivymd.toast import toast
 
 import rarfile
 import os
@@ -19,9 +21,9 @@ class ImageWidget(Widget):
     source_sub: StringProperty
     source_files: ListProperty
     source_index_max : NumericProperty
-    view_num : NumericProperty = 2
+    step : NumericProperty = 1
     source_index : NumericProperty = 0
-    file_path = ""
+    file_path = "/Users/ki/development/python/kivy/book-reader/book_reader/image/Goblin_Slayer_Side_Story_Year_One_08w.rar"
     rf = rarfile.RarFile(file_path)
     shutil.rmtree('tmp')
     rf.extractall("./tmp")
@@ -53,7 +55,7 @@ class ImageWidget(Widget):
 
     def next(self):
         if self.source_index < self.source_index_max:
-            self.source_index += self.view_num
+            self.source_index += self.step
         self.source_main = self.source_files[self.source_index]
         if self.source_index+1 < self.source_index_max:
             self.source_sub = self.source_files[self.source_index+1]
@@ -61,15 +63,17 @@ class ImageWidget(Widget):
 
     def prev(self):
         if self.source_index > 0:
-            self.source_index -= self.view_num
+            self.source_index -= self.step
         self.source_main = self.source_files[self.source_index]
         self.source_sub = self.source_files[self.source_index+1]
         print(self.source_main)
 
-class ReaderApp(App):
+    def display_filename(self):
+        toast(f"{self.source_index+1}/{self.source_index_max+1}")
+
+class ReaderSingleApp(MDApp):
     def __init__(self, **kwargs):
-        super(ReaderApp, self).__init__(**kwargs)
+        super(ReaderSingleApp, self).__init__(**kwargs)
         self.title = "book reader"
 
-
-ReaderApp().run()
+ReaderSingleApp().run()

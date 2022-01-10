@@ -8,6 +8,7 @@ authors = ["kakakoi"]
 python = "^3.9"
 Kivy = "^2.0.0"
 rarfile = "^4.0"
+kivymd = "^0.104.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

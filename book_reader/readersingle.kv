@@ -1,0 +1,24 @@
+#:kivy 2.0
+
+ImageWidget:
+
+<ImageWidget>:
+    canvas.before:
+        Color:
+            rgba: 0.6, 0.6, 0.6, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'horizontal'
+        size: root.size
+
+        Image:
+            source: root.source_main
+            allow_stretch: True
+            keep_ratio: True
+            size_hint_y: None
+            width: self.parent.width/self.image_ratio
+            height: self.parent.height
+            on_touch_down: root.display_filename()
